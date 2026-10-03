@@ -1,6 +1,16 @@
 # 演算台后端
 
-Python + Flask + SQLite 的 JSON API。所有表达式解析、数学计算、历史写入/读取/删除都在本服务完成。配套前端是独立的 `calculator-frontend` 目录，应按作业要求发布为另一个仓库。
+Python + Flask + SQLite 的 JSON API。所有表达式解析、数学计算、历史写入/读取/删除都在本服务完成。配套前端是独立的 `calculator-frontend` 目录，已按作业要求发布为另一个仓库。
+
+## 在线服务
+
+- 后端仓库：https://github.com/hoangthithang880-dotcom/calculator-backend
+- API 根地址：https://hoangthithang880.pythonanywhere.com
+- 健康检查：https://hoangthithang880.pythonanywhere.com/api/health
+- 前端网页：https://hoangthithang880-dotcom.github.io/calculator-frontend/
+- 前端仓库：https://github.com/hoangthithang880-dotcom/calculator-frontend
+
+2026 年 10 月 3 日部署至 PythonAnywhere，使用 Python 3.13、Flask 和 SQLite。云端运行的 17 项测试全部通过，并已验证后端重新加载后历史记录仍然存在、指定历史记录可以正常删除。
 
 ## 环境与本地启动
 
@@ -110,6 +120,6 @@ docker run --name calc-notes-api -p 5001:5001 \
   -v calc-notes-data:/data calc-notes-api
 ```
 
-Docker 方案需自己提供 HTTPS；命名卷不能换成容器临时目录。SQLite/WAL 适合课程的单主机小规模并发，不要让多主机副本共用网络文件系统上的数据库。在线 URL 由部署完成后填写，此包没有声称已经部署。
+Docker 方案需自己提供 HTTPS；命名卷不能换成容器临时目录。SQLite/WAL 适合课程的单主机小规模并发，不要让多主机副本共用网络文件系统上的数据库。当前版本已部署至 PythonAnywhere。生产环境使用持久化 SQLite 数据库，并将 CORS 来源限制为已部署的 GitHub Pages 前端。公开 HTTPS 地址已经完成健康检查、计算、历史持久化及单条删除验收。
 
-代码规范：[codestyle.md](codestyle.md)。工具依据：[Flask 部署文档](https://flask.palletsprojects.com/en/stable/deploying/)、[Python decimal](https://docs.python.org/3/library/decimal.html)、[sqlite3](https://docs.python.org/3/library/sqlite3.html)。AI 辅助编写/测试；提交者需遵循课程披露规则，理解与自主核验后使用。
+代码规范：[codestyle.md](codestyle.md)。工具依据：[Flask 部署文档](https://flask.palletsprojects.com/en/stable/deploying/)、[Python decimal](https://docs.python.org/3/library/decimal.html)、[sqlite3](https://docs.python.org/3/library/sqlite3.html)。需求设计与确认、功能验证、Git 管理和部署由本人完成。AI 辅助编写/测试；
